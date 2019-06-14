@@ -51,7 +51,8 @@ BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_PAGESIZE := 4096
 TARGET_PREBUILT_KERNEL := device/asus/I01WD/kernel
 BOARD_KERNEL_IMAGE_NAME := kernel
-BOARD_MKBOOTIMG_ARGS := --kernel_offset 0x00008000 --ramdisk_offset 0x01000000 --tags_offset 0x00000100 --second_offset 0x00f00000 --dt device/asus/I01WD/dt.img
+BOARD_MKBOOTIMG_ARGS := --kernel_offset 0x00008000 --ramdisk_offset 0x01000000 --tags_offset 0x00000100 --second_offset 0x00f00000
+# --dt device/asus/I01WD/dt.img
 
 # Platform
 TARGET_BOARD_PLATFORM := sdm845
@@ -99,6 +100,8 @@ AB_OTA_UPDATER := true
 TW_INPUT_BLACKLIST := "hbtp_vm"
 TW_THEME := portrait_hdpi
 TW_USE_TOOLBOX := true
+TARGET_RECOVERY_PIXEL_FORMAT := BGRA_8888
+TW_MAX_BRIGHTNESS := 1023
 #TARGET_RECOVERY_DEVICE_MODULES += android.hardware.boot@1.0
 #TARGET_USE_CUSTOM_LUN_FILE_PATH := /config/usb_gadget/g1/functions/mass_storage.0/lun.%d/file
 #TARGET_RECOVERY_PIXEL_FORMAT := BGRA_8888
@@ -106,6 +109,7 @@ TW_USE_TOOLBOX := true
 #TW_USE_TOOLBOX := true
 TW_NO_LEGACY_PROPS := true
 #TW_INCLUDE_REPACKTOOLS := true
+LZMA_RAMDISK_TARGETS := recovery
 
 # Use mke2fs to create ext4 images
 TARGET_USES_MKE2FS := true
@@ -122,7 +126,9 @@ AB_OTA_PARTITIONS += \
 
 # Encryption
 PLATFORM_SECURITY_PATCH := 2025-12-31
-#TW_INCLUDE_CRYPTO := true
+TW_INCLUDE_CRYPTO := true
+TWRP_INCLUDE_LOGCAT := true
+TARGET_USES_LOGD := true
 #TW_INCLUDE_CRYPTO_FBE := true
 
 # Extras
